@@ -14,7 +14,7 @@ app.use(express.static("public"));
 
 
 //mongoose.connect(process.env.MONGODB_URI || "mongodb://workout:workout123@ds033767.mlab.com:33767/heroku_jrjwb66m", { useNewUrlParser: true });
-mongoose.connect(process.env.MONGODB_URI || "mongodb://heroku_m3f7tjvj:uhhq67nv9deifu1itbrjovb7o3@ds035557.mlab.com:35557/heroku_m3f7tjvj", {
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout" || "mongodb://heroku_m3f7tjvj:uhhq67nv9deifu1itbrjovb7o3@ds035557.mlab.com:35557/heroku_m3f7tjvj", {
    userNewUrlParser: true,
    useFindAndModify: false
 })
