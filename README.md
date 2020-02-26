@@ -7,3 +7,7 @@
 ## Context
 
 A consumer will reach their fitness goals quicker when they track their workout progress.
+
+## Link
+
+[Heroku Link of Deployed App](https://desolate-taiga-45568.herokuapp.com/)
