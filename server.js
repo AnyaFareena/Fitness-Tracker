@@ -1,28 +1,31 @@
-const express = require('express');
-const mongojs = require('mongojs');
+// Dependencies
+const express = require("express");
+const morgan = require("morgan");
 const mongoose = require("mongoose");
 
-
+// Setting up Express App
+const app = express();
 const PORT = process.env.PORT || 5000;
 
-const app = express();
+app.use(morgan("dev"));
 
-app.use(express.urlencoded({ extended: true}));
+// Sets up the Express app to handle data parsing
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.static('public'));
 
-app.use(express.static("public"));
-
-
-//mongoose.connect(process.env.MONGODB_URI || "mongodb://workout:workout123@ds033767.mlab.com:33767/heroku_jrjwb66m", { useNewUrlParser: true });
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout" || "mongodb://heroku_m3f7tjvj:uhhq67nv9deifu1itbrjovb7o3@ds035557.mlab.com:35557/heroku_m3f7tjvj", {
-   userNewUrlParser: true,
-   useFindAndModify: false
+// db mongo
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/workout";
+mongoose.connect(MONGODB_URI, {
+    useNewUrlParser: true,
+    useFindAndModify: false
 })
 
-app.use(require("./routes/api-routes.js"));
-app.use(require("./routes/html-routes.js"));
- 
+// Creating Routes
+require("./routes/apiRoutes")(app);
+require("./routes/htmlRoutes")(app);
 
-app.listen(5000, () => {
-    console.log(`Listening on port ${PORT}`)
+// Starts the server to begin listening
+app.listen(PORT, function () {
+    console.log(`App listening on Port ${PORT}!`);
 });
